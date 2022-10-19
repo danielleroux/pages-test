@@ -17,3 +17,4 @@ jobs:
         with:
           folder: build # The folder the action should deploy.
           target-folder: version-dev
+          clean-exclude: version-*
