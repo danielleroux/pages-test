@@ -17,7 +17,9 @@ jobs:
 
       - name: Check if deployment condition is fulfilled
         if: ${{ startsWith(github.ref, 'release/') == false }}
-        run: exit -1
+        run: |
+          echo ${{ github.ref }} ${{ startsWith(github.ref, 'release/') }}
+          exit -1
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
