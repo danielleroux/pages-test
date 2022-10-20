@@ -1,6 +1,9 @@
 name: Deploy SUB
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - 'release/v[0-9].[0-9]+.[0-9]+-beta.[0-9]+-docs'
 
 permissions:
   contents: write

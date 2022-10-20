@@ -1,8 +1,9 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
-    tags: ['v[0-9].[0-9]+.[0-9]+']
+  push:
+    branches:
+      - 'release/v[0-9].[0-9]+.[0-9]+-docs'
 
 permissions:
   contents: write
