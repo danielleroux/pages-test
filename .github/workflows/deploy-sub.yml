@@ -22,6 +22,7 @@ jobs:
       - name: Check if deployment condition is fulfilled
         if: ${{ startsWith(github.ref, 'refs/heads/release/docs/v') == false || github.event.inputs.confirm_deployment == false }}
         run: |
+          echo "::error ::Missing semicolon"
           exit -1
 
       - name: Deploy 🚀
