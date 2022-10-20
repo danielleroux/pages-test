@@ -21,7 +21,7 @@ jobs:
 
       - name: Check if deployment condition is fulfilled
         run: |
-          if [[ ${{ github.event.ref }} =~ ^refs/tags/docs/v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+$ ]]; then
+          if [[ ! ${{ github.event.ref }} =~ ^refs/tags/docs/v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+$ ]]; then
               exit -1
           fi
 
