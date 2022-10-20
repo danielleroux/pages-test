@@ -4,9 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       confirm_deployment:
-        description: 'Please confirm PROD deployment'
+        description: 'Please confirm deployment'
         required: true
         type: boolean
+      deployment:
+        description: 'Deployment instance'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - test
+          - prod
 
 permissions:
   contents: write
@@ -27,6 +35,15 @@ jobs:
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'prod' }}
         with:
           folder: build
+          clean-exclude: version-*
+
+      - name: Deploy Testinstance 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.event.inputs.deployment == 'test' }}
+        with:
+          folder: build
+          target-folder: version-dev
           clean-exclude: version-*
