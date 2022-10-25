@@ -12,15 +12,11 @@ jobs:
       - name: Add pull request checklist
         uses: actions/github-script@v6
         with:
-          script: console.log(context)
-
-        # uses: actions/github-script@v5
-        # with:
-        #   github-token: ${{secrets.GITHUB_TOKEN}}
-        #   script: |
-        #     github.rest.issues.createComment({
-        #       issue_number: context.issue.number,
-        #       owner: context.repo.owner,
-        #       repo: context.repo.repo,
-        #       body: '👋 Thanks for reporting!'
-        #     })
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
