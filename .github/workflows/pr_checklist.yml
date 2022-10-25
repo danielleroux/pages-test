@@ -10,13 +10,13 @@ jobs:
       issues: write
     steps:
       - name: Add pull request checklist
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.rest.issues.createComment({
-              issue_number: context.payload.pull_request.number,
-              owner: context.payload.repository.owner,
-              repo: context.payload.repository.full_name,
+              issue_number: context.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               body: '👋 Thanks for reporting!'
             })
